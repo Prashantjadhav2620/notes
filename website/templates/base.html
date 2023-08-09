@@ -41,16 +41,16 @@
     </nav>
 
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category =='error'
-    %}
-    <div class="alert alert-danger alter-de=ismissable fade show" role="alert">
+    messages %} {% for category, message in messages %} {% if category ==
+    'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
       {{ message }}
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     {% else %}
-    <div class="alert alert-success alter-de=ismissable fade show" role="alert">
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
       {{ message }}
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
@@ -75,9 +75,17 @@
       crossorigin="anonymous"
     ></script>
 
+{% block javascript %}
     <script type="text/javascript">
-      type="text/javascript"
-      src="{{ url_for('static',filename="index.js")}}"
-    </script>
+      function deleteNote(noteId) {
+  fetch("/delete-note", {
+    method: "POST",
+    body: JSON.stringify({ noteId: noteId }),
+  }).then((_res) => {
+    window.location.href = "/";
+  });
+  }
+</script>
+{% endblock %}
   </body>
 </html>
