@@ -56,7 +56,7 @@ def sign_up():
         elif len(firstName)<2:
             flash("firstName to must be greter then 3 characters !!",category="error")
         elif (password1!= password2):
-            flash("Password don't match ??",category="error")
+            flash("Password don't match ?? Please Enter Correct Password ",category="error")
         elif len(password1)<6:
             flash("password1 to must be greter then 7 characters !!",category="error")
         elif len(password2)<6:
